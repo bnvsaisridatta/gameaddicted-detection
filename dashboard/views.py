@@ -7,10 +7,13 @@ import pandas as pd
 import joblib
 import time
 
-encoder = joblib.load("model/onehot_encoder.pkl")
-label_encoder = joblib.load("model/label_encoder.pkl")
-scaler = joblib.load("model/scaler.pkl")
-model = joblib.load("model/stacking_model.pkl")
+from django.conf import settings
+import os
+
+encoder = joblib.load(os.path.join(settings.BASE_DIR, "model", "onehot_encoder.pkl"))
+label_encoder = joblib.load(os.path.join(settings.BASE_DIR, "model", "label_encoder.pkl"))
+scaler = joblib.load(os.path.join(settings.BASE_DIR, "model", "scaler.pkl"))
+model = joblib.load(os.path.join(settings.BASE_DIR, "model", "stacking_model.pkl"))
 
 @login_required
 def dashboard_view(request):
